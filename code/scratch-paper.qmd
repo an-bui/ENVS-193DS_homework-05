@@ -1,6 +1,6 @@
 ---
 title: "Untitled"
-format: 
+format:
   html:
     toc: true
     toc-location: left
@@ -10,6 +10,8 @@ execute:
   message: false
   warning: false
 ---
+
+# Set up
 
 ```{r libraries}
 # should haves (from last week)
@@ -28,7 +30,7 @@ library(AICcmodavg)
 library(GGally)
 ```
 
-Read in the data:
+# Read in the data:
 
 ```{r reading-data}
 plant <- read_csv(here("data", "knb-lter-hfr.109.18", "hf109-01-sarracenia.csv")) %>% 
@@ -38,20 +40,20 @@ plant <- read_csv(here("data", "knb-lter-hfr.109.18", "hf109-01-sarracenia.csv")
   select(totmass, species, feedlevel, sla, chlorophyll, amass, num_lvs, num_phylls)
 ```
 
-Visualize the missing data:
+# Visualize the missing data:
 
 ```{r missing-data-visualization}
 gg_miss_var(plant)
 ```
 
-Subsetting the data by dropping NAs:
+# Subsetting the data by dropping NAs:
 
 ```{r subset-drop-NA}
 plant_subset <- plant %>% 
   drop_na(sla, chlorophyll, amass, num_lvs, num_phylls)
 ```
 
-Create a correlation plot:  
+# Create a correlation plot:  
 
 (example writing) To determine the relationships between numerical variables in our dataset, we calculated Pearsons r and visually represented correlation using a correlation plot.
 
@@ -69,7 +71,7 @@ corrplot(plant_cor,
          )
 ```
 
-Create a plot of each varable compared against the others 
+# Create a plot of each varable compared against the others 
 
 ```{r pairs-plot}
 plant_subset %>% 
@@ -77,7 +79,7 @@ plant_subset %>%
   ggpairs()
 ```
 
-Starting regression here:  
+# Starting regression here:  
 
 (example) To determine how species and physiological characteristics predict biomass, we fit multiple linear models.
 
@@ -85,6 +87,8 @@ Starting regression here:
 null <- lm(totmass ~ 1, data = plant_subset)
 full <- lm(totmass ~ species + feedlevel + sla + chlorophyll + amass + num_lvs + num_phylls, data = plant_subset)
 ```
+
+# Diagnostics
 
 We visually assess normality and homoskedasticity of residuals using diagnostic plots for the full model:
 

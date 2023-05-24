@@ -104,7 +104,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-content" class="page-columns page-rows-contents page-layout-article toc-left">
 <div id="quarto-sidebar-toc-left" class="sidebar toc-left">
-  
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#set-up" id="toc-set-up" class="nav-link active" data-scroll-target="#set-up">Set up</a></li>
+  <li><a href="#read-in-the-data" id="toc-read-in-the-data" class="nav-link" data-scroll-target="#read-in-the-data">Read in the data:</a></li>
+  <li><a href="#visualize-the-missing-data" id="toc-visualize-the-missing-data" class="nav-link" data-scroll-target="#visualize-the-missing-data">Visualize the missing data:</a></li>
+  <li><a href="#subsetting-the-data-by-dropping-nas" id="toc-subsetting-the-data-by-dropping-nas" class="nav-link" data-scroll-target="#subsetting-the-data-by-dropping-nas">Subsetting the data by dropping NAs:</a></li>
+  <li><a href="#create-a-correlation-plot" id="toc-create-a-correlation-plot" class="nav-link" data-scroll-target="#create-a-correlation-plot">Create a correlation plot:</a></li>
+  <li><a href="#create-a-plot-of-each-varable-compared-against-the-others" id="toc-create-a-plot-of-each-varable-compared-against-the-others" class="nav-link" data-scroll-target="#create-a-plot-of-each-varable-compared-against-the-others">Create a plot of each varable compared against the others</a></li>
+  <li><a href="#starting-regression-here" id="toc-starting-regression-here" class="nav-link" data-scroll-target="#starting-regression-here">Starting regression here:</a></li>
+  <li><a href="#diagnostics" id="toc-diagnostics" class="nav-link" data-scroll-target="#diagnostics">Diagnostics</a></li>
+  </ul>
+</nav>
 </div>
 <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
 </div>
@@ -126,6 +139,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
+<section id="set-up" class="level1">
+<h1>Set up</h1>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -145,7 +160,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Read in the data:</p>
+</section>
+<section id="read-in-the-data" class="level1">
+<h1>Read in the data:</h1>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -156,7 +173,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(totmass, species, feedlevel, sla, chlorophyll, amass, num_lvs, num_phylls)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Visualize the missing data:</p>
+</section>
+<section id="visualize-the-missing-data" class="level1">
+<h1>Visualize the missing data:</h1>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -166,7 +185,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="scratch-paper_files/figure-html/missing-data-visualization-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Subsetting the data by dropping NAs:</p>
+</section>
+<section id="subsetting-the-data-by-dropping-nas" class="level1">
+<h1>Subsetting the data by dropping NAs:</h1>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -174,7 +195,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(sla, chlorophyll, amass, num_lvs, num_phylls)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Create a correlation plot:</p>
+</section>
+<section id="create-a-correlation-plot" class="level1">
+<h1>Create a correlation plot:</h1>
 <p>(example writing) To determine the relationships between numerical variables in our dataset, we calculated Pearsons r and visually represented correlation using a correlation plot.</p>
 <div class="cell">
 <details>
@@ -195,7 +218,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="scratch-paper_files/figure-html/correlation-plot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Create a plot of each varable compared against the others</p>
+</section>
+<section id="create-a-plot-of-each-varable-compared-against-the-others" class="level1">
+<h1>Create a plot of each varable compared against the others</h1>
 <div class="cell">
 <details>
 <summary>Code</summary>
@@ -207,7 +232,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="scratch-paper_files/figure-html/pairs-plot-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
-<p>Starting regression here:</p>
+</section>
+<section id="starting-regression-here" class="level1">
+<h1>Starting regression here:</h1>
 <p>(example) To determine how species and physiological characteristics predict biomass, we fit multiple linear models.</p>
 <div class="cell">
 <details>
@@ -216,6 +243,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>full <span class="ot">&lt;-</span> <span class="fu">lm</span>(totmass <span class="sc">~</span> species <span class="sc">+</span> feedlevel <span class="sc">+</span> sla <span class="sc">+</span> chlorophyll <span class="sc">+</span> amass <span class="sc">+</span> num_lvs <span class="sc">+</span> num_phylls, <span class="at">data =</span> plant_subset)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+</section>
+<section id="diagnostics" class="level1">
+<h1>Diagnostics</h1>
 <p>We visually assess normality and homoskedasticity of residuals using diagnostic plots for the full model:</p>
 <div class="cell">
 <details>
@@ -279,6 +309,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>OK: Error variance appears to be homoscedastic (p = 0.071).</code></pre>
 </div>
 </div>
+</section>
 
 </main>
 <!-- /main column -->

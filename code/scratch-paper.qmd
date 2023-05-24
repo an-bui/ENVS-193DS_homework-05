@@ -11,6 +11,46 @@ execute:
   warning: false
 ---
 
+# Notes from workshop
+
+## YAML options for a quarto document
+
+```
+---
+title: "Untitled"
+format:
+  html:
+    toc: true
+    toc-location: left
+    code-fold: true
+    theme: yeti
+execute:
+  message: false
+  warning: false
+---
+```
+
+## YAML options for an RMarkdown document:
+
+```
+---
+title: "Untitled"
+format:
+  html_document:
+    toc: true
+    toc-location: left
+    code_folding: true
+    theme: yeti
+---
+```
+
+## knitr set up options for an RMarkdown document:
+
+```{r knitr-example, eval = FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+
 # Set up
 
 ```{r libraries}

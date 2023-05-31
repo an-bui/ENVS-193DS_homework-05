@@ -145,7 +145,8 @@ check_normality(full)
 check_heteroscedasticity(full)
 ```
 
-```{r}
+```{r model-logs}
+null_log <- lm(log(totmass) ~ 1, data = plant_subset)
 full_log <- lm(log(totmass) ~ species + feedlevel + sla + chlorophyll + amass + num_lvs + num_phylls, data = plant_subset)
 
 plot(full_log)
@@ -153,10 +154,79 @@ check_normality(full_log)
 check_heteroscedasticity(full_log)
 ```
 
+Evaluate multicollinearity:
+
+```{r calculate-vif}
+car::vif(full_log)
+```
+
+We evaluated multicollinearity by calculating generalized variance inflation factor and determined that...  
+
+try some more models:  
+
+addressing the question: what set of predictor variables best explains the response?
+
+```{r}
+model2_log <- lm(log(totmass) ~ species, data = plant_subset)
+```
+
+check assumptions for model 2:
+```{r}
+plot(model2_log)
+
+check_normality(model2_log)
+check_heteroscedasticity(model2_log)
+```
+
+compare models using Akaike's Information criterion (AIC) values: 
+
+```{r}
+AICc(full_log)
+AICc(model2_log)
+AICc(null_log)
+
+MuMIn::AICc(full_log, model2_log, null_log)
+MuMIn::model.sel(full_log, model2_log, null_log)
+```
+
+we compared models using AIC and chose the model with the lowest value, which was...
+
+# Results
+
+We found that the ______ model including ___ ____ __ predictors best predicted _______ (model summary).
+
+```{r}
+summary(full_log)
+
+table <- tidy(full_log, conf.int = TRUE) %>% 
+  # change the p-value numbers if they're really small
+  # change the estmaes, standard error, and t-tstatistics to round to ___ digits
+  # using mutate
+  # make it into a flextable
+  flextable() %>% 
+  # fit it to the viewer
+  autofit()
+
+table
+```
+
+use `ggpredict()` to backtranform estimates
+```{r}
+model_pred <- ggpredict(full_log, terms = "species", back.transform = TRUE)
+
+plot(ggpredict(full_log, terms = "species", back.transform = TRUE), add.data = TRUE)
+
+plot(ggpredict(full_log, terms = "chlorophyll", back.transform = TRUE), add.data = TRUE)
+
+plot(ggpredict(full_log, terms = "sla", back.transform = TRUE), add.data = TRUE)
+
+model_pred
+```
 
 
+# different types of anovas
 
+```{r}
 
-
-
+```
 

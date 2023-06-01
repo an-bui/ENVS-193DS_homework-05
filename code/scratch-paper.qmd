@@ -223,10 +223,3 @@ plot(ggpredict(full_log, terms = "sla", back.transform = TRUE), add.data = TRUE)
 model_pred
 ```
 
-
-# different types of anovas
-
-```{r}
-
-```
-

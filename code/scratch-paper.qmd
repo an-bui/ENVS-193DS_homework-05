@@ -198,7 +198,7 @@ We found that the ______ model including ___ ____ __ predictors best predicted _
 ```{r}
 summary(full_log)
 
-table <- tidy(full_log, conf.int = TRUE) %>% 
+table <- tidy(full_log, conf.int = TRUE, exponentiate = TRUE) %>% 
   # change the p-value numbers if they're really small
   # change the estmaes, standard error, and t-tstatistics to round to ___ digits
   # using mutate
